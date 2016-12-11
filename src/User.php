@@ -12,10 +12,13 @@
  * @author pp
  */
 abstract class User {
+    
+    protected $pdo;
     protected $id;
     protected $email;
     protected $hashed_password;
-    
+    protected $name;
+
     function getId() {
         return $this->id;
     }
@@ -24,25 +27,32 @@ abstract class User {
         return $this->email;
     }
 
-    function getHashed_password() {
+    function getHashedPassword() {
         return $this->hashed_password;
     }
-
+    function getName(){
+        return $this->name;
+    }
+    function setName($name){
+        $this->name = $name;
+    }
     
-    abstract protected function checkLogin($email, $password);
+    function setEmail($email) {
+        $this->email = $email;
+    }
 
-    abstract protected function setEmail($email);
-
-    abstract protected function setHashedPassword($password);
-
-    abstract protected function isAdmin();
+    function setHashedPassword($password) {
+        $newHashedPassword = password_hash($password, PASSWORD_BCRYPT);
+        $this->hashed_password = $newHashedPassword;
+    }
     
-    final function login($username, $password) {
-        if ($this->checkLogin($username, $password)) {
+    function checkLoginAndPassword($email, $password) {
+        if ($this->email == $email && password_verify($password, $this->getHashedPassword())) {
             return true;
         } else {
             return false;
         }
     }
 
+    abstract protected function isAdmin();
 }

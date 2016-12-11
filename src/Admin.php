@@ -11,37 +11,23 @@
  *
  * @author pp
  */
+require_once 'User.php';
 class Admin extends User{
+    protected $pdo;
     
-    private $name;
     
-    function __construct(){
+    function __construct($pdo){
+        $this->pdo = $pdo;
         $this->id = -1;
         $this->email = '';
         $this->hashed_password = '';
         $this->name = '';
         
     }
-    function checkLogin($email, $password) {
-        if($this->$email == $email && password_verify($password, $this->getPassword())){
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     function isAdmin() {
         return true;
     }
 
-    function setEmail($email) {
-        $this->email = $email;
-    }
-
-    function setHashedPassword($password) {
-        $newHashedPassword = password_hash($password, PASSWORD_BCRYPT);
-        $this->hashedPassword = $newHashedPassword;
-    }
-
-//put your code here
+    
 }

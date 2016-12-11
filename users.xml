@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<mysqldump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<database name="TestShop_db">
+	<table_data name="Admin">
+	<row>
+		<field name="id">1</field>
+		<field name="email">tola@wp.pl</field>
+		<field name="hashed_password">djkdsajd&amp;a$kdl533</field>
+		<field name="name">Tola</field>
+	</row>
+	<row>
+		<field name="id">2</field>
+		<field name="email">adam@wp.pl</field>
+		<field name="hashed_password">djdkd4sajd&amp;a$kdl533</field>
+		<field name="name">Adam</field>
+	</row>
+	</table_data>
+	<table_data name="Customers">
+	<row>
+		<field name="id">1</field>
+		<field name="email">bolek@wp.pl</field>
+		<field name="hashed_password">$2y$10$BigKHH13hKtfXK.ttf6GGeY2AL7xD4gODKWyVmrmNPAb5iELr24Nm</field>
+		<field name="name">Jan</field>
+		<field name="surname">Kowalski</field>
+		<field name="address">Warszawa 00-011, ul. Nowa 13/4</field>
+	</row>
+	<row>
+		<field name="id">2</field>
+		<field name="email">lolek@wp.pl</field>
+		<field name="hashed_password">$2y$10$BigKHH13hKtfXK.ttf6GGeY2AL7xD4gODKWyVmrmNP455iELr24Nm</field>
+		<field name="name">Karol</field>
+		<field name="surname">Nowak</field>
+		<field name="address">Warszawa 00-011, ul. Nowa 10/5</field>
+	</row>
+	<row>
+		<field name="id">3</field>
+		<field name="email">anna@wp.pl</field>
+		<field name="hashed_password">$2y$10$BigKHH13hKtMNK.ttf6GGeY2AL7xD4gODKWyVmrmNPAb5iELr24Nm</field>
+		<field name="name">Anna</field>
+		<field name="surname">Jasna</field>
+		<field name="address">Warszawa 00-031, ul. Różana 5/4</field>
+	</row>
+	</table_data>
+</database>
+</mysqldump>
