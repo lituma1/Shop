@@ -80,4 +80,25 @@ class AdminTest extends PHPUnit_Extensions_Database_TestCase {
         $this->test->setHashedPassword('klockilego');
         $this->assertTrue($this->test->checkLoginAndPassword('abc@onet.pl', 'klockilego'));
     }
+    function testLoadAdminById(){
+        $admin = Admin::loadAdminById($this->pdo, 1);
+        $this->assertEquals('Tola', $admin->getName());
+    }
+    function testLoadAllAdmins(){
+        $admins = Admin::loadAllAdmins($this->pdo);
+        $this->assertCount(2, $admins);
+        $this->assertEquals('Tola', $admins[0]->getName());
+    }
+    function testSaveToDb(){
+        
+    }
+    function testModyfyAndSaveToDb(){
+        
+    }
+    function testCreateAdmin(){
+        
+    }
+    function testdeleteAdmin(){
+        
+    }
 }
