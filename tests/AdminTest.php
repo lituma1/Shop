@@ -112,7 +112,7 @@ class AdminTest extends PHPUnit_Extensions_Database_TestCase {
     
     function testCreateAdmin(){
         
-        $admin = Admin::createAdmin($this->pdo, 'jacek@wp.pl', 'lolek', 'Jacek');
+        $admin = Admin::createAdmin($this->pdo, 'jacek2@wp.pl', 'lolek', 'Jacek');
         $this->assertCount(3, Admin::loadAllAdmins($this->pdo));
         $this->assertEquals(3, $admin->getId());
         $this->assertTrue(password_verify('lolek', $admin->getHashedPassword()));

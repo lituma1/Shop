@@ -12,7 +12,7 @@
  * @author pp
  */
 require_once 'User.php';
-
+require_once 'Message.php';
 class Customer extends User {
 
     protected $pdo;
@@ -140,6 +140,10 @@ class Customer extends User {
         $customer->setSurname($surname);
         
         return $customer;
+    }
+    function getMyMessages($pdo){
+        $messages = Message::loadMessagesByReceiverId($pdo, $this->id);
+        return $messages;
     }
 
 }

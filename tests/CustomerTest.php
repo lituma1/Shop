@@ -12,7 +12,7 @@
  * @author pp
  */
 require_once './src/Customer.php';
-
+require_once './src/Message.php';
 class CustomerTest extends PHPUnit_Extensions_Database_TestCase {
 
     private $pdo;
@@ -153,6 +153,12 @@ class CustomerTest extends PHPUnit_Extensions_Database_TestCase {
         $this->assertCount(4, Customer::loadAllCustomers($this->pdo));
         $this->assertEquals(4, $customer->getId());
         $this->assertTrue(password_verify('sanki', $customer->getHashedPassword()));
+        
+    }
+    function testGetMyMessages(){
+        $customer = Customer::loadCustomerById($this->pdo, 2);
+        $messages = Message::loadMessagesByReceiverId($this->pdo, $customer->getId());
+        $this->assertCount(2, $messages);
         
     }
 

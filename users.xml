@@ -13,7 +13,7 @@
 		<field name="email">adam@wp.pl</field>
 		<field name="hashed_password">djdkd4sajd&amp;a$kdl533</field>
 		<field name="name">Adam</field>
-	</row>
+        </row>
 	</table_data>
 	<table_data name="Customers">
 	<row>
@@ -39,6 +39,23 @@
 		<field name="name">Anna</field>
 		<field name="surname">Jasna</field>
 		<field name="address">Warszawa 00-031, ul. Różana 5/4</field>
+	</row>
+	</table_data>
+	<table_data name="Message">
+	<row>
+		<field name="id">1</field>
+		<field name="receiver_id">2</field>
+		<field name="text_message">Paczka została dziś wysłana Pozdrawiamy</field>
+	</row>
+	<row>
+		<field name="id">2</field>
+		<field name="receiver_id">2</field>
+		<field name="text_message">Prosimy o dokonanie płatności za zamówienie Pozdrawiamy</field>
+	</row>
+	<row>
+		<field name="id">3</field>
+		<field name="receiver_id">1</field>
+		<field name="text_message">Prosimy o dokonanie płatności za zamówienie Pozdrawiamy</field>
 	</row>
 	</table_data>
 </database>
