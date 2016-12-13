@@ -59,4 +59,43 @@ class Admin extends User {
         return $admins;
     }
 
+    function SaveToDb($pdo) {
+        if ($this->id == -1) {
+            $name = $this->getName();
+            $email = $this->getEmail();
+            $hashed_password = $this->getHashedPassword();
+            $sql = "INSERT INTO Admin (email, hashed_password, name) VALUES ('$email', '$hashed_password', '$name')";
+            $query = $pdo->prepare($sql);
+            $query->execute();
+        } else {
+            $id = $this->getId();
+            $name = $this->getName();
+            $email = $this->getEmail();
+            $hashed_password = $this->getHashedPassword();
+            $sql = "UPDATE Admin SET name= '$name', email= '$email', hashed_password= '$hashed_password' WHERE id=$id";
+            $query = $pdo->prepare($sql);
+            $query->execute();
+            
+        }
+    }
+    static function deleteAdmin($pdo, $id){
+        $sql = "DELETE FROM Admin WHERE id=$id";
+        $query = $pdo->prepare($sql);
+        $query->execute();
+    }
+    static function createAdmin($pdo, $email, $password, $name){
+        $admin = new Admin($pdo);
+        $admin->setEmail($email);
+        $admin->setHashedPassword($password);
+        $hashedPassword = $admin->getHashedPassword();
+        $admin->setName($name);
+        $sql = "INSERT INTO Admin (email, hashed_password, name) VALUES ('$email', '$hashedPassword', '$name')";
+        $query = $pdo->prepare($sql);
+        $query->execute();
+        //Ta wersja prostsza niż w Customer też działa
+        $id = $pdo->lastInsertId();
+        $admin->id = $id;
+        return $admin;
+    }
+
 }

@@ -90,15 +90,32 @@ class AdminTest extends PHPUnit_Extensions_Database_TestCase {
         $this->assertEquals('Tola', $admins[0]->getName());
     }
     function testSaveToDb(){
-        
+        $this->test->setName('Jola');
+        $this->test->setHashedPassword('oleole');
+        $this->test->setEmail('jola@wp.pl');
+        $this->test->SaveToDb($this->pdo);
+        $this->assertCount(3, Admin::loadAllAdmins($this->pdo));
     }
     function testModyfyAndSaveToDb(){
+        $admin = Admin::loadAdminById($this->pdo, 1);
+        $admin->setEmail('tolazmieniona@onet.pl');
+        $admin->SaveToDb($this->pdo);
+        $this->assertCount(2, Admin::loadAllAdmins($this->pdo));
+        $admin2 = Admin::loadAdminById($this->pdo, 1);
         
-    }
-    function testCreateAdmin(){
-        
+        $this->assertEquals('tolazmieniona@onet.pl', $admin2->getEmail());
     }
     function testdeleteAdmin(){
-        
+        Admin::deleteAdmin($this->pdo, 2);
+        $this->assertCount(1, Admin::loadAllAdmins($this->pdo));
     }
+    
+    function testCreateAdmin(){
+        
+        $admin = Admin::createAdmin($this->pdo, 'jacek@wp.pl', 'lolek', 'Jacek');
+        $this->assertCount(3, Admin::loadAllAdmins($this->pdo));
+        $this->assertEquals(3, $admin->getId());
+        $this->assertTrue(password_verify('lolek', $admin->getHashedPassword()));
+    }
+    
 }

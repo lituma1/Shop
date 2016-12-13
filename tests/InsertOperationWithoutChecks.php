@@ -7,11 +7,11 @@
  */
 
 /**
- * Description of InsertOperationWithoutFkChecks
+ * Description of InsertOperationWithoutChecks
  *
  * @author pp
  */
-class InsertOperationWithoutFkChecks extends PHPUnit_Extensions_Database_Operation_Insert{
+class InsertOperationWithoutChecks extends PHPUnit_Extensions_Database_Operation_Insert{
     public function execute(
     PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection, PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet
     ) {
