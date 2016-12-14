@@ -61,9 +61,9 @@ class Message {
         return $messages;
     }
 
-    static function loadMessagesByReceiverId($pdo, $rId) {
+    static function loadMessagesByReceiverId($pdo, $receiverId) {
         $messages = [];
-        $sql = "SELECT * FROM Message WHERE receiver_id=$rId";
+        $sql = "SELECT * FROM Message WHERE receiver_id=$receiverId";
         $query = $pdo->prepare($sql);
         $query->execute();
         while ($row = $query->fetch(PDO::FETCH_ASSOC)){
@@ -75,8 +75,17 @@ class Message {
         }
         return $messages;
     }
-    static function createMessage(){
+    static function createMessage($pdo, $receiverId, $text){
+        $sql = "INSERT INTO Message (receiver_id, text_message) VALUES ($receiverId, '$text')";
+        $query = $pdo->prepare($sql);
+        $query->execute();
+        $id = $pdo->lastInsertId();
+        $message = new Message($pdo);
+        $message->id = $id;
+        $message->setReceiverId($receiverId);
         
+        $message->setText($text);
+        return $message;
     }
 
 }
