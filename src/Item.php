@@ -65,6 +65,22 @@ class Item {
         $this->quantity = $quantity;
     }
 
-
+    static function loadAllItems($pdo){
+        $items = [];
+        $sql = "SELECT * FROM Item";
+        $query = $pdo->prepare($sql);
+        $query->execute();
+         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            $loadedItem = new Item($pdo);
+            $loadedItem->id = $row['id'];
+            $loadedItem->setName($row['name']);
+            $loadedItem->setDescription($row['description']);
+            $loadedItem->setPrice($row['price']);
+            $loadedItem->setQuantity($row['quantity']);
+            $items[] = $loadedItem;
+        }
+        return $items;
+        
+    }
     
 }

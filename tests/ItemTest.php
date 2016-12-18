@@ -65,5 +65,38 @@ class ItemTest extends PHPUnit_Extensions_Database_TestCase {
     public function testGetId() {
         $this->assertEquals(-1, $this->testItem->getId());
     }
-
+    public function testGetName() {
+        $this->assertEquals('', $this->testItem->getName());
+    }
+    public function testGetDescription() {
+        $this->assertEquals('', $this->testItem->getDescription());
+    }
+    public function testGetPrice() {
+        $this->assertEquals(0, $this->testItem->getPrice());
+    }
+    public function testGetQuantity() {
+        $this->assertEquals(0, $this->testItem->getQuantity());
+    }
+    public function testSetName() {
+        $this->testItem->setName('galaxy A5');
+        $this->assertEquals('galaxy A5', $this->testItem->getName());
+    }
+    public function testSetDescription(){
+        $this->testItem->setDescription('fajny telefon');
+        $this->assertEquals('fajny telefon', $this->testItem->getDescription());
+    }
+    public function testSetPrice(){
+        $this->testItem->setPrice(399.99);
+        $this->assertEquals(399.99, $this->testItem->getPrice());
+    }
+    public function testSetQuantity(){
+        $this->testItem->setQuantity(9);
+        $this->assertEquals(9, $this->testItem->getQuantity());
+    }
+    public function testLoadAllItems(){
+        $items = Item::loadAllItems($this->pdo);
+        $this->assertCount(2, $items);
+    } 
+    
+            
 }
