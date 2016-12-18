@@ -13,7 +13,13 @@
 		<field name="email">adam@wp.pl</field>
 		<field name="hashed_password">djdkd4sajd&amp;a$kdl533</field>
 		<field name="name">Adam</field>
-        </row>
+	</row>
+	<row>
+		<field name="id">3</field>
+		<field name="email">jacek2@wp.pl</field>
+		<field name="hashed_password">$2y$10$Ny7km3WRwueBO4E4Tpwt0O5edcnhw8OxdoiotlLzSmhfJ/HyrHCe.</field>
+		<field name="name">Jacek</field>
+	</row>
 	</table_data>
 	<table_data name="Customers">
 	<row>
@@ -39,6 +45,29 @@
 		<field name="name">Anna</field>
 		<field name="surname">Jasna</field>
 		<field name="address">Warszawa 00-031, ul. Różana 5/4</field>
+	</row>
+	</table_data>
+	<table_data name="Image">
+	<row>
+		<field name="id">1</field>
+		<field name="source">/home/pp/Workspace/Shop/images/samsungj3.jpg</field>
+		<field name="item_id">1</field>
+	</row>
+	</table_data>
+	<table_data name="Item">
+	<row>
+		<field name="id">1</field>
+		<field name="name">samsung galaxy J3</field>
+		<field name="description">bardzo dobry telefon</field>
+		<field name="price">599.99</field>
+		<field name="quantity">10</field>
+	</row>
+	<row>
+		<field name="id">2</field>
+		<field name="name">kindle paper white</field>
+		<field name="description">bardzo dobry czytnik</field>
+		<field name="price">499.99</field>
+		<field name="quantity">5</field>
 	</row>
 	</table_data>
 	<table_data name="Message">

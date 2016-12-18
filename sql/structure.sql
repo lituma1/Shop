@@ -10,3 +10,4 @@
 
 CREATE TABLE Message (id INT UNSIGNED NOT NULL AUTO_INCREMENT, receiver_id INT UNSIGNED NOT NULL, text_message TEXT, PRIMARY KEY (id), FOREIGN KEY(receiver_id) REFERENCES Customers(id) ON DELETE CASCADE) CHARACTER SET=utf8;
 INSERT INTO Message (receiver_id, text_message) VALUES (2, 'Prosimy o dokonanie płatności za zamówienie Pozdrawiamy');
+CREATE TABLE Image (id INT UNSIGNED NOT NULL AUTO_INCREMENT, source VARCHAR(255) UNIQUE, PRIMARY KEY(id));

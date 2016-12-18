@@ -11,20 +11,21 @@
  *
  * @author pp
  */
-//require_once 'InsertOperationWithoutFkChecks.php';
+require_once 'InsertOperationWithoutChecks.php';
+
 require_once './src/Message.php';
 
 class MessageTest extends PHPUnit_Extensions_Database_TestCase {
 
     private $pdo;
 
-//    protected function getSetUpOperation() {
-//        // Override
-//        return new PHPUnit_Extensions_Database_Operation_Composite([
-//            PHPUnit_Extensions_Database_Operation_Factory::TRUNCATE(),
-//            new InsertOperationWithoutChecks(),
-//        ]);
-//    }
+    protected function getSetUpOperation() {
+        // Override
+        return new PHPUnit_Extensions_Database_Operation_Composite([
+            PHPUnit_Extensions_Database_Operation_Factory::TRUNCATE(),
+            new InsertOperationWithoutChecks(),
+        ]);
+    }
     protected function setUp() {
         parent::setUp();
         $this->testMessage = new Message($this->pdo);

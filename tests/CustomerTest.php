@@ -13,10 +13,17 @@
  */
 require_once './src/Customer.php';
 require_once './src/Message.php';
+require_once 'InsertOperationWithoutChecks.php';
 class CustomerTest extends PHPUnit_Extensions_Database_TestCase {
 
     private $pdo;
-
+    protected function getSetUpOperation() {
+        // Override
+        return new PHPUnit_Extensions_Database_Operation_Composite([
+            PHPUnit_Extensions_Database_Operation_Factory::TRUNCATE(),
+            new InsertOperationWithoutChecks(),
+        ]);
+    }
     protected function setUp() {
         parent::setUp();
         $this->test = new Customer($this->pdo);
