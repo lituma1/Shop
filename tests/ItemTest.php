@@ -97,6 +97,22 @@ class ItemTest extends PHPUnit_Extensions_Database_TestCase {
         $items = Item::loadAllItems($this->pdo);
         $this->assertCount(2, $items);
     } 
-    
+    public function testLoadItemById(){
+        $item = Item::loadItemById($this->pdo, 1);
+        $this->assertEquals(599.99, $item->getPrice());
+    }
+    public function testCreateItem() {
+        $item = Item::createItem($this->pdo, 'TV LG', '32 cale', 899.99, 3);
+        $items = Item::loadAllItems($this->pdo);
+        $this->assertCount(3, $items);
+        $this->assertEquals('TV LG', $item->getName());
+    }
+    public function testModyfyAndSave() {
+        $item = Item::loadItemById($this->pdo, 1);
+        $item->setPrice(499.99);
+        $item->saveToDb($this->pdo);
+        $this->assertEquals(499.99, $item->getPrice());
+        $this->assertCount(2, Item::loadAllItems($this->pdo));
+    }
             
 }

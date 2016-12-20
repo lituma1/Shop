@@ -82,5 +82,54 @@ class Item {
         return $items;
         
     }
-    
+    static function loadItemById($pdo, $id){
+        $sql = "SELECT * FROM Item WHERE id=$id";
+        $query = $pdo->prepare($sql);
+        $query->execute();
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        $loadedItem = new Item($pdo);
+        $loadedItem->id = $row['id'];
+        $loadedItem->setName($row['name']);
+        $loadedItem->setPrice($row['price']);
+        $loadedItem->setDescription($row['description']);
+        $loadedItem->setQuantity($row['quantity']);
+        return $loadedItem;
+    }
+    static function createItem($pdo, $name, $description, $price, $quantity){
+        
+        $sql = "INSERT INTO Item (name, description, price, quantity) VALUES "
+                . "('$name', '$description', $price, $quantity)";
+        $query = $pdo->prepare($sql);
+        $query->execute();
+        $id = $pdo->lastInsertId();
+        $item = new Item($pdo);
+        $item->id = $id;
+        $item->setName($name);
+        $item->setPrice($price);
+        $item->setQuantity($quantity);
+        $item->setDescription($description);
+        return $item;
+        
+        
+    }
+    function saveToDb($pdo) {
+        $id = $this->getId();
+        $name = $this->getName();
+        $description = $this->getDescription();
+        $price = $this->getPrice();
+        $quantity = $this->getQuantity();
+       
+        if ($id == -1) {
+            $sql = "INSERT INTO Item (name, description, price, quantity)"
+                    . "VALUES ('$name', '$description', $price, $quantity)";
+            $query = $pdo->prepare($sql);
+            $query->execute();
+        } else {
+            $sql = "UPDATE Item SET name='$name', description='$description', "
+                    . "price=$price, quantity=$quantity WHERE id=$id";
+            $query = $pdo->prepare($sql);
+            $query->execute();
+        }
+        
+    }
 }
